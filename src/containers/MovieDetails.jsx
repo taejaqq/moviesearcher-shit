@@ -1,6 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {getMovieDetailsThunk} from "../reducers/mainpage-reducer";
+import MovieDescription from "../components/MovieDescription";
+import {StyledGridContainer, StyledGridItem} from "../styled/Styles";
 
 class MovieDetails extends React.Component {
     componentDidMount() {
@@ -10,11 +12,19 @@ class MovieDetails extends React.Component {
     }
 
     render() {
+        const style = {width: "500px", margin: "0 auto"};
         const movieDetailsProps = this.props.movieDetailsInfo;
         if (movieDetailsProps === null) return null;
 
         console.log(this.props);
-        return <div>{movieDetailsProps.original_title}</div>
+
+        return (
+            <StyledGridItem>
+                <StyledGridContainer style={style}>
+                    <MovieDescription details={movieDetailsProps}/>
+                </StyledGridContainer>
+            </StyledGridItem>
+        )
     }
 }
 

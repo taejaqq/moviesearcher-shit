@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Mainpage from "./containers/Mainpage";
+import {Route, Switch} from "react-router-dom";
+import MovieDetails from "./containers/MovieDetails";
+import Header from "./components/Header";
+import MyContact from "./components/MyContact";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+    return (
+        <div className="App">
+            <Header/>
+            <Switch>
+                <Route exact path="/" component={Mainpage}/>
+                <Route path="/movie/:userId"
+                       component={MovieDetails}
+                       render={props => <MovieDetails {...props} key={this.props.location.key}/>}/>
+                <Route path="/contact" component={MyContact}/>
+            </Switch>
+        </div>
+    )
 }
 
 export default App;
